@@ -1,21 +1,64 @@
-import modDAL
-from modDAL import ModuleClass
+import modSQLDAL
+from modSQLDAL import Module
+from modSQLDAL import ModuleClass
+from modSQLDAL import SQLDataType as Type
+import modSysFile
+import modTestingData
+##modTestingData.CreateSQLTable()
 
-ClassName = 'clsPeople'
-SQLTableName = 'People'
-KeyList = ['Name']
-ParameterList = ['Age', 'Gender', 'Remarks']
-modDAL.CreateObjectClass(ClassName, SQLTableName, KeyList, ParameterList)
-ResultList = modDAL.SQLGetObject(ClassName,SQLTableName)
-print ResultList[0].__class__.__name__
+##Initization ==================================================================================
+Module('modInitization').InitSystemFiles()
+print Module('modSysFile').GetFunctionList('modSQLDAL.modSQLDAL')
 
+##modSysFile.InsertPath(modSysFile.GetSystemFolderPathList(modSysFile.ProjectPath))
+##for ModuleFile in modSysFile.GetSystemFileList(modSysFile.ProjectPath, ['py']):
+##    if not ModuleFile == "ProjectGray":
+##        print ModuleFile
+##        FunctionList = []
+##        for ModuleName in Module('modSysFile').GetClassList(ModuleFile):
+##            FunctionList+=modSysFile.GetFunctionList(ModuleName)
+##        print FunctionList
+##Module('modSysFile').GetFunctionList('clsMSSQL')
+
+##print Module('modSysFile').GetFunctionList('clsMSSQL.MSSQL')
+
+
+##Module('modInitization').CreateSystemTable()
+##Module('modInitization').CreateAllObjectClass()
+
+##Data Preparation =============================================================================
+##modTestingData.RunTestingData()
+
+
+##Item = modSQLDAL.SQLGetObject("clsUnClassObj", "WHERE [Name] = 'Item1'")[0]
+##Connection = ModuleClass('clsObjMap')(Item[0].ObjMap)
+
+
+
+##ResultList = Connection.FindByTextToObject('Gary')
+##for Item in ResultList:
+##    print Item.GetValueList(Item.fieldList)
+##ResultList = Connection.FindByFieldToObject('clsPeople','Name','Kenneth Tse')
+##for Item in ResultList:
+##    print Item.GetValueList(Item.fieldList)
+##ResultList = Connection.FindClassObject('clsPeople')
+##for Item in ResultList:
+##    print Item.GetValueList(Item.fieldList)
+##ResultList = Connection.FindAllObject("Teammate")
+
+##for Item in ModuleClass('clsObjMap')(Item.ObjMap).FindAllObject("Teammate"):
+##    print Item.GetValueList(Item.fieldList)
+    
 ##Print Result ========================================================================================================
-print len(ResultList)
-for Item in ResultList:
-    PrintResult = ''
-    for FieldName in ModuleClass(ClassName).fieldList:
-        PrintResult += ',' + eval('str(Item.{0}).decode("utf8")'.format(FieldName))
+##ResultList = modSQLDAL.SQLGetObject('clsUnClassObj')
+##for Item in ResultList:
+##    print Item.GetValueList(Item.fieldList)
+##
+##ResultList = modSQLDAL.SQLGetObject('clsPeople')
+##for Item in ResultList:
+##    print Item.GetValueList(Item.fieldList)
+##
+##
 
-    PrintResult = PrintResult[1:]
-    print PrintResult
+
 

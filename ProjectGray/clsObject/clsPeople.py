@@ -1,23 +1,19 @@
-
-class clsPeople:
+from clsObject import clsObject
+from modSQLDAL import ModuleClass
+class clsPeople(clsObject):
     count = 0
-    paramString = 'Name, Age, Gender, Remarks'
-    keyList = ['Name']
-    paramList = ['Age', 'Gender', 'Remarks']
+    keyList = ['Name', 'Serial']
+    paramList = ['ObjMap', 'Age', 'Gender', 'Remarks']
     fieldList = keyList + paramList
     SQLTableName = 'People'
+    ClassName = __name__
     
-    def __init__(self, Name, Age, Gender, Remarks):
+    def __init__(self, Name, Serial, ObjMap, Age, Gender, Remarks):
         clsPeople.count += 1
         self.Name=Name
+        self.Serial=Serial
+        self.ObjMap=ObjMap
         self.Age=Age
         self.Gender=Gender
         self.Remarks=Remarks
         
-
-    def ParaValue(self, FieldName):
-        return eval("self.clsPeople".format(FieldName))
-
-    def TotalCount(self):
-        print clsPeople.count
-
